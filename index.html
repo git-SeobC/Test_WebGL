@@ -9,6 +9,18 @@
     <canvas id="unity-canvas" width=960 height=600 tabindex="-1" style="width: 960px; height: 600px; background: #231F20"></canvas>
     <script src="Build/WebGL_Build_Test.loader.js"></script>
     <script>
+        // 모든 기기에서 반응형 동작을 위해 resize 이벤트 핸들러 추가
+        function resizeCanvas() {
+            var canvas = document.querySelector("#unity-canvas");
+            // CSS로 100vw, 100vh를 지정하면 DOM 상 크기는 자동 맞춰지지만,
+            // 실제 렌더링 해상도(canvas.width, canvas.height)도 창 크기에 맞추려면 아래와 같이 갱신할 수 있습니다.
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        // 창 크기가 변경될 때마다 캔버스 크기를 업데이트
+        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('load', resizeCanvas);
+      
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         // Mobile device style: fill the whole browser client area with the game canvas:
         var meta = document.createElement('meta');
